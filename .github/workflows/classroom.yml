@@ -1,0 +1,22 @@
+name: Autograder
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  grading:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]' && github.actor != 'ArthurCRodrigues'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check repository criteria
+        uses: webtech-journey/autograder-journey-02-03@v1
